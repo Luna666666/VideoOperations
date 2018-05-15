@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController
-
+@property (nonatomic,assign)BOOL Second;//判断是否是退出登录
 @end

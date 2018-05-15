@@ -135,7 +135,7 @@ static NSString * lsy_getCanDown = @"lsy_getCanDown";
     if ([object isEqual:self.lsy_sender]) {
         if ([keyPath isEqualToString:self.lsy_memberName]) {
             self.lsy_canDo = [change[@"new"] isEqual:self.lsy_canDoValue];
-            NSLog(@"看看是什么%@",self.lsy_canDoValue)
+            NSLog(@"看看是什么%@",self.lsy_canDoValue);
         }
     }
 }

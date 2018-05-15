@@ -12,6 +12,7 @@
 #import "MICSecurity.h"
 #import "NSString+WZXSSLTool.h"
 #import "XSInfoView.h"
+#import "DNQ.pch"
 @implementation LsyUrlJudgment
 
 
@@ -83,7 +84,7 @@
     NSString* account = [user objectForKey:@"account"];
     NSString * pwd = [user objectForKey:@"password"];
     if (account&&pwd) {
-        [[LsyNetworkManager manager].setRequest([NSString stringWithFormat:@"%@/api/application/IOS",HeaderURL]) startRequestWithSuccess:^(id response) {
+        [[LsyNetworkManager manager].setRequest([NSString stringWithFormat:@"%@/api/application/IOS",BaseURL]) startRequestWithSuccess:^(id response) {
             NSString * usermobile = account;
             NSString * passWord = [pwd do32MD5];
             
@@ -100,7 +101,7 @@
             NSString * iv = @"1111";
             NSString * newIv = [NSString stringWithFormat:@"%@%@",base,iv];
             //    NSLog(@"新的IV：%@",newIv);
-            NSString * des = [MICSecurity encryptWithDES:[NSString stringWithFormat:@"%@/Account/Login",HeaderURL] Key:newKey Iv:newIv];
+            NSString * des = [MICSecurity encryptWithDES:[NSString stringWithFormat:@"%@/Account/Login",BaseURL] Key:newKey Iv:newIv];
             NSString * application = response[@"name"];
             NSString * Authorization = [NSString stringWithFormat:@"%@:%@",application,des];
             //    NSLog(@"新的Authorization：%@",Authorization);
@@ -111,7 +112,7 @@
             //    NSLog(@"请求头%@",HttpHeader);
             
             
-            [[LsyNetworkManager manager].setRequest([NSString stringWithFormat:@"%@/Account/Login",HeaderURL]).RequestType(POST).HTTPHeader(HTTPHeader).Parameters(dic).RequestSerialize(RequestSerializerHTTP).ResponseSerialize(ResponseSerializerJSON).FormData(nil) startRequestWithSuccess:^(id response) {
+            [[LsyNetworkManager manager].setRequest([NSString stringWithFormat:@"%@/Account/Login",BaseURL]).RequestType(POST).HTTPHeader(HTTPHeader).Parameters(dic).RequestSerialize(RequestSerializerHTTP).ResponseSerialize(ResponseSerializerJSON).FormData(nil) startRequestWithSuccess:^(id response) {
                 
                 NSLog(@"登录成功后的信息%@",response[@"code"]);
                 if ([response[@"code"] intValue] == 200) {

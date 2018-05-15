@@ -10,8 +10,9 @@
 #import "EasyCaptureViewController.h"
 #import "CustomVideoEditorController.h"
 #import "AAPLPlayerViewController.h"
-
-@interface VideoUploaderMainViewController ()
+#import "TZImagePickerController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+@interface VideoUploaderMainViewController ()<CustomVideoEditorDelegate,TZImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *takingPhotoUploader;
 
@@ -43,6 +44,13 @@
     
 }
 - (IBAction)generalUploader:(id)sender {
+      __weak typeof (self) weakSelf = self;
+      __strong typeof(self) strongSelf = weakSelf;
+    //上传视频
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 Quailty:NO  delegate:strongSelf];
+    imagePickerVc.allowPickingImage = NO;
+    imagePickerVc.allowPickingVideo = YES;
+    [strongSelf presentViewController:imagePickerVc animated:YES completion:nil];
     NSLog(@"general uploader button is pressed!");
 }
 
@@ -107,9 +115,9 @@
         __strong typeof(self) strongSelf = weakSelf;
         //前后摄像头，曝光，暂停，播放控制器,点击确定后回调产生导出路径
         CustomVideoEditorController *playController = [[CustomVideoEditorController alloc] initWithVideoFileURL:exportPath delegate:strongSelf];
-        //        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:playController];
         dispatch_async(dispatch_get_main_queue(), ^{
             [navCaptrue pushViewController:playController animated:YES];
+           
         });
         playController.outputCallback = ^(NSString *exportPath, NSInteger error){
             

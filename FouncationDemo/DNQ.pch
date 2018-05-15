@@ -1,15 +1,39 @@
-//
-//  DNQ.pch
-//  FouncationDemo
-//
-//  Created by swkj on 16/11/18.
-//  Copyright © 2016年 dnq. All rights reserved.
-//
 
-#ifndef DNQ_pch
-#define DNQ_pch
 
-// Include any system framework and library headers here that should be included in all compilation units.
-// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifndef CCTVVideo_pch
+#define CCTVVideo_pch
 
-#endif /* DNQ_pch */
+#define SCREEN_WIDTH ([[UIScreen mainScreen]bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen]bounds].size.height)
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height//获取屏幕高度
+#define ScreenWidth  [UIScreen mainScreen].bounds.size.width//获取屏幕宽度
+#define TextColor    [UIColor colorWithRed:1.000 green:0.486 blue:0.016 alpha:1.00]
+#define DetailHeader 180
+#define NavigateBarH 64
+#define Margin1 10
+#define btnWidth 60
+#define btnHeight 30
+#define CellWH  50
+#define XSpace  20
+#define RGBA(R/*红*/, G/*绿*/, B/*蓝*/, A/*透明*/) \
+[UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]
+// 显示加载框 (锁屏)
+#define SHOW_LOADING [MBProgressHUD showHUDAddedTo:self.view animated:YES]
+// 隐藏加载框
+#define HIDE_LOADING [MBProgressHUD hideAllHUDsForView:self.view animated:YES]
+
+//外网接口
+//#define BaseURL  @"http://i.cctvyrcy.com"
+#define BaseURL @"http://120.193.9.10:9009"
+
+//首页视频排行中的收益排行接口
+#define EarningRankUrl BaseURL@"/ranking/getvideoranking"
+//首页视频排行用户排行接口
+#define UserRankUrl BaseURL@"/ranking/getuserranking"
+//收藏接口
+#define CollectUrl BaseURL@"/details/postcollect"
+//点赞接口
+#define DianZanUrl BaseURL@"/details/postpraise"
+//留言接口
+#define PostMessageUrl BaseURL@"/details/postmessage"
+#endif /* CCTVVideo_pch */

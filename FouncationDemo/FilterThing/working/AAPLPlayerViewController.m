@@ -13,7 +13,6 @@
 
 #import "AAPLPlayerViewController.h"
 #import "AAPLPlayerView.h"
-#import "PFVideoUploadViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "SVProgressHUD.h"
 

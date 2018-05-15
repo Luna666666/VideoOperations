@@ -13,15 +13,14 @@
 #import "TZAssetModel.h"
 #import "TZImagePickerController.h"
 #import "TZPhotoPreviewController.h"
-#import "XXViewController.h"
 #import "CustomVideoEditorController.h"
 #import "AAPLPlayerViewController.h"
 #import "XSInfoView.h"
 #import "MBProgressHUD.h"
 #import "VideoClipViewController.h"
 #import "SCRecordSegment.h"
-#import "PFVideoUploadViewController.h"
 #import "LsyRmoveVideo.h"
+#import "DNQUploaderViewController.h"
 @interface TZVideoPlayerController ()<CustomVideoEditorDelegate> {
     AVPlayer *_player;
     UIButton *_playButton;
@@ -71,9 +70,13 @@
             AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
             playerLayer.frame = self.view.bounds;
             [self.view.layer addSublayer:playerLayer];
+            //设置视频播放进度
             [self addProgressObserver];
+            //配置播放暂停按钮的UI
             [self configPlayButton];
+            //配置底部导航条及OK按钮
             [self configBottomToolBar];
+            //视频播放到最后的监听
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pausePlayerAndShowNaviBar) name:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem];
         });
     }];
@@ -135,7 +138,7 @@
         [self pausePlayerAndShowNaviBar];
     }
 }
-
+#pragma mark-点击拍摄完视频后的done按钮
 - (void)okButtonClick {
      HUD = [[MBProgressHUD alloc] initWithView:self.view];
     TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
@@ -143,9 +146,29 @@
     HUD.dimBackground = YES;
     HUD.labelText = @"读取中";
     [HUD show:YES];
+    //导出视频路径发通知
+    [[TZImageManager manager] getVideoOutputPathWithAsset:_model.asset completion:^(NSString *outputPath) {
+        NSLog(@"视频导出到本地完成,沙盒路径为:%@",outputPath);
+        __weak typeof (self) weakSelf = self;
+        if (outputPath) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //                        HUD.hidden = YES;
+                //                        XSInfoViewStyle *style = [[XSInfoViewStyle alloc] init];
+                //                        style.info = @"压缩成功";
+                //                        style.layoutStyle = XSInfoViewLayoutStyleVertical;
+                //                        [XSInfoView showInfoWithStyle:style onView:[UIApplication sharedApplication].keyWindow];
+                //                        [self createEditorVC:outputPath];
+            });
+            
+        }
+        
+    }];
+    
+    //从本地相册选择一个视频后的代理回调,传一个UIImage和ALAsset类型即可
     if ([imagePickerVc.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingVideo:sourceAssets:)]) {
         [imagePickerVc.pickerDelegate imagePickerController:imagePickerVc didFinishPickingVideo:_cover sourceAssets:_model.asset];
     }
+    //用户选择视频handle会回调
     if (imagePickerVc.didFinishPickingVideoHandle) {
         imagePickerVc.didFinishPickingVideoHandle(_cover,_model.asset);
     }
@@ -162,6 +185,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
+#pragma mark-点击down按钮选择视频后最终回调的一个视频url
 -(void)getUrl:(NSNotification *)noti{
     NSLog(@"为什么这么多次");
 //    static dispatch_once_t onceToken;
@@ -172,18 +196,18 @@
     
     if (_urlString) {
         HUD.hidden = YES;
+        //高清上传
         if ([TZImageManager manager].uploadHighQuality) {
             NSLog(@"开始高清上传 %@",_urlString);
-            UIStoryboard *upload = [UIStoryboard storyboardWithName:@"PFVideoUpload" bundle:nil];
-            PFVideoUploadViewController *vc = [upload instantiateInitialViewController];
+            DNQUploaderViewController *vc = [[DNQUploaderViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
             vc.videoUrl = [NSURL fileURLWithPath:_urlString];
             vc.videoAsset = _model.asset;
             vc.HigeQuality = YES;
             //删除沙盒里视频
-//            [LsyRmoveVideo LsyRmoveVideo:[NSURL fileURLWithPath:_urlString]];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
-       
+       //普通上传
           [self showClipView:_urlString];
         //删除沙盒里视频
         [LsyRmoveVideo LsyRmoveVideo:[NSURL fileURLWithPath:_urlString]];
@@ -193,7 +217,7 @@
 
 
 }
-
+//视频剪切,给一个视频裁剪的起始时间和持续时间和视频资源即可
 - (void)showClipView:(NSString *)outputPath
 {
     AVAsset *avAsset = [AVAsset assetWithURL:[NSURL fileURLWithPath:outputPath]];
@@ -212,13 +236,14 @@
         SCRecordSegment *segment = [[SCRecordSegment alloc] initWithAsset:avAsset];
         segment.clipStartTime = start;
         segment.clipDuration = duraiton;
-        
+        //视频裁剪完后进入视频编辑页面,此后这块和拍摄上传过程一样
         CustomVideoEditorController *playController = [[CustomVideoEditorController alloc] initWithVideoSegment:segment Stydle:stydle delegate:self ];
         playController.videoStydle = stydle;
         playController.outputCallback = ^(NSString *exportPath, NSInteger error){
             //exportPath 视频的地址
             if (error == 0)
             {
+                //如果导出没有错误拿到视频资源就可以播放，快进或者后退
                 //                        [weakSelf previewVideo:exportPath];
                 AAPLPlayerViewController *captureViewCon = [[AAPLPlayerViewController alloc] initWithNibName:@"AAPLPlayerViewController" bundle:nil];
                 captureViewCon.asset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:exportPath]];
@@ -226,7 +251,7 @@
                 
             }
         };
-        
+        //视频处理，美颜，滤镜，MV
         [playController reloadEffects:[self localTestMusic]];
         [playController reloadEffects:[self localTestFxMov]];
         [playController reloadEffects:[self localTestPicFrame]];
@@ -234,7 +259,7 @@
     };
 }
 
-//编辑类
+//编辑类代理方法
 -(void)createEditorVC:(NSString *)outPutPath Start:(CMTime) start Duration:(CMTime) duration Stydle:(BOOL) stydle{
     
     CustomVideoEditorController *playController = [[CustomVideoEditorController alloc] initWithVideoFileURL:[NSURL fileURLWithPath:outPutPath] delegate:self];

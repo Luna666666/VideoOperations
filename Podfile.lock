@@ -1,0 +1,54 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - HappyDNS (0.3.10)
+  - Masonry (1.0.0)
+  - MBProgressHUD (1.0.0)
+  - Qiniu (7.1.4):
+    - AFNetworking (~> 3)
+    - HappyDNS (~> 0.3)
+  - RongCloudIM/IMKit (2.8.0):
+    - RongCloudIM/IMLib
+  - RongCloudIM/IMLib (2.8.0)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+
+DEPENDENCIES:
+  - FMDB (= 2.6.2)
+  - Masonry (= 1.0.0)
+  - MBProgressHUD (~> 1.0.0)
+  - Qiniu (= 7.1.4)
+  - RongCloudIM/IMKit (= 2.8.0)
+  - RongCloudIM/IMLib (= 2.8.0)
+  - SDWebImage (= 3.7.6)
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  HappyDNS: 06a9fed2796663fd87626dbf02552933265bf059
+  Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  Qiniu: a4c962782035ee25b9da3e195181d8c384bb75be
+  RongCloudIM: 82a5fcf93027ef2845063e6d5ba77f9f42eb87a5
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+
+PODFILE CHECKSUM: 4777f65a1375d4b0a57a85d52122161cafbb78ff
+
+COCOAPODS: 1.1.1

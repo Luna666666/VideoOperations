@@ -16,6 +16,9 @@
 #import <AVFoundation/AVTime.h>
 #import <MBProgressHUD.h>
 #import "SVProgressHUD.h"
+#import "LsyNetworkManager.h"
+#import "DNQ.pch"
+#import "LsyUrlJudgment.h"
 @interface DNQUploaderViewController (){
     NSString * _qiNiuToken;
     BOOL _cancelUpLoad;
@@ -40,7 +43,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     //    NSLog(@"视频地址%@",self.uploadModel.videoUrl);
-    [[LsyNetworkManager manager].setRequest([NSString stringWithFormat:@"%@/UploadFile/GenerateToken",HeaderURL]).HTTPHeader([APPInfo shareInfo].HTTPHeader).RequestType(GET).RequestSerialize(RequestSerializerHTTP).ResponseSerialize(ResponseSerializerJSON) startRequestWithSuccess:^(id response) {
+    [[LsyNetworkManager manager].setRequest([NSString stringWithFormat:@"%@/UploadFile/GenerateToken",BaseURL]).HTTPHeader([APPInfo shareInfo].HTTPHeader).RequestType(GET).RequestSerialize(RequestSerializerHTTP).ResponseSerialize(ResponseSerializerJSON) startRequestWithSuccess:^(id response) {
         
         _qiNiuToken = response[@"result"];
         
@@ -59,7 +62,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.title = @"上传视频";
-     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(submitFeedBack:)];
+     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"上传视频" style:UIBarButtonItemStylePlain target:self action:@selector(submitFeedBack:)];
      isEdit = YES;
     //设置上传封面
     [self getVideoImage];
@@ -103,13 +106,13 @@
                             @"x:UId" :[NSString stringWithFormat:@"%@", [APPInfo shareInfo].uId],//登录获取
                             @"x:CUId":[APPInfo shareInfo].cuId,//登录获取
                             @"x:Type":@"2",
-                            @"x:Introduction":@"咸鱼视频上传",
-                            @"x:Title":@"李安",
+                            @"x:Introduction":@"丁能强啦啦啦",
+                            @"x:Title":@"丁能强啦啦啦",
                             @"x:ClassOneId":[NSString stringWithFormat:@"%ld",(long)1],
                             @"x:ClassTwoId":[NSString stringWithFormat:@"%ld",(long)2],
-                            @"x:Director":@"李安",
-                            @"x:Screenwriter":@"李安",
-                            @"x:Performer":@"李安",
+                            @"x:Director":@"丁能强啦啦啦",
+                            @"x:Screenwriter":@"丁能强啦啦啦",
+                            @"x:Performer":@"丁能强啦啦啦",
                             @"x:Price":@"20",
                             @"x:Level1":@"1",
                             @"x:SpreadCount1":@"20",
@@ -128,13 +131,13 @@
                             @"x:UId" :[NSString stringWithFormat:@"%@", [APPInfo shareInfo].uId],//登录获取
                             @"x:CUId":[APPInfo shareInfo].cuId,//登录获取
                             @"x:Type":@"1",
-                            @"x:Introduction":@"李安",
-                            @"x:Title":@"李安",
+                            @"x:Introduction":@"丁能强啦啦啦",
+                            @"x:Title":@"丁能强啦啦啦",
                             @"x:ClassOneId":[NSString stringWithFormat:@"%ld",(long)1],
                             @"x:ClassTwoId":[NSString stringWithFormat:@"%ld",(long)2],
-                            @"x:Director":@"李安",
-                            @"x:Screenwriter":@"李安",
-                            @"x:Performer":@"李安",
+                            @"x:Director":@"丁能强啦啦啦",
+                            @"x:Screenwriter":@"丁能强啦啦啦",
+                            @"x:Performer":@"丁能强啦啦啦",
                             @"x:Price":@"100",
                             @"x:Level1":@"1",
                             @"x:SpreadCount1":@"20",
