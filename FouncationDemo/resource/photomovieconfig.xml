@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>   
+<items>      
+    <item> 
+       <id>1</id>  
+       <name>故事</name>
+       <image>story.png</image>
+       <audio>11.m4a</audio>
+    </item>
+    <item>
+        <id>2</id>  
+        <name>追忆</name> 
+        <image>rose.png</image>
+        <audio>13.m4a</audio>
+    </item>
+    <item>
+        <id>3</id>  
+        <name>baby</name>
+        <image>baby.png</image>
+        <audio>13.m4a</audio>
+    </item>
+    <item>
+        <id>4</id>  
+        <name>秀色</name>
+        <image>food.png</image> 
+        <audio>13.m4a</audio>
+    </item>
+    <item> 
+        <id>5</id>  
+        <name>酷炫</name>
+        <image>party.png</image>
+        <audio>13.m4a</audio>
+    </item>
+
+</items> 

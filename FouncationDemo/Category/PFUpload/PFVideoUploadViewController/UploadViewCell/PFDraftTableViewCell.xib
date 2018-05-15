@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="draft" rowHeight="80" id="KGk-i7-Jjw" customClass="PFDraftTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="320" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkF-na-bqn">
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SaC-ma-Mdg">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="65" id="NbS-8g-jvv"/>
+                            <constraint firstAttribute="width" constant="60" id="SUy-sK-myM"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqV-DJ-W9t">
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title=" 上传" image="草稿箱上传">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="upload:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JU5-Fu-TbR"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Odv-0L-SYf">
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title=" 编辑" image="编辑">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="edit:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Nqo-Cw-xgO"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVH-JF-Ov0">
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="MVH-JF-Ov0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="12" id="6ST-CD-bUO"/>
+                    <constraint firstAttribute="trailing" secondItem="gkF-na-bqn" secondAttribute="trailing" constant="15" id="945-3b-FgL"/>
+                    <constraint firstItem="gkF-na-bqn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-12" id="E6e-zf-8Q9"/>
+                    <constraint firstItem="gkF-na-bqn" firstAttribute="leading" secondItem="SaC-ma-Mdg" secondAttribute="trailing" constant="15" id="KHD-CT-z7o"/>
+                    <constraint firstItem="SaC-ma-Mdg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="MXl-jJ-LKV"/>
+                    <constraint firstItem="bqV-DJ-W9t" firstAttribute="centerY" secondItem="MVH-JF-Ov0" secondAttribute="centerY" id="MjR-XY-BNL"/>
+                    <constraint firstItem="bqV-DJ-W9t" firstAttribute="leading" secondItem="Odv-0L-SYf" secondAttribute="trailing" constant="15" id="Ydx-5f-ccC"/>
+                    <constraint firstItem="MVH-JF-Ov0" firstAttribute="leading" secondItem="SaC-ma-Mdg" secondAttribute="trailing" constant="15" id="ahK-sh-c9h"/>
+                    <constraint firstItem="SaC-ma-Mdg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iZp-JO-OXk"/>
+                    <constraint firstAttribute="trailing" secondItem="bqV-DJ-W9t" secondAttribute="trailing" constant="15" id="kZS-7X-kq8"/>
+                    <constraint firstItem="Odv-0L-SYf" firstAttribute="centerY" secondItem="MVH-JF-Ov0" secondAttribute="centerY" id="xO1-su-f6A"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+            <connections>
+                <outlet property="coverImageView" destination="SaC-ma-Mdg" id="Vqf-Nc-9Bd"/>
+                <outlet property="dateLabel" destination="MVH-JF-Ov0" id="ssZ-XH-NfO"/>
+                <outlet property="nameLabel" destination="gkF-na-bqn" id="YsM-Yg-fpT"/>
+            </connections>
+            <point key="canvasLocation" x="-31" y="44"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="编辑" width="13" height="13"/>
+        <image name="草稿箱上传" width="12" height="13"/>
+    </resources>
+</document>

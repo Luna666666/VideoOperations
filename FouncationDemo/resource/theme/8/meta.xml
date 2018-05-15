@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<RootNode totalframe="1500" framerate="25" framesize="480-480" >-->
+<!--	<VideoTrack>-->
+<!--		<MediaNode name="怀旧" id="vintage" MediaType="1" totalframe="1500" In="0" Out="1500" >-->
+<!--      		<FilterNode name="SEPIA" FilterID="SEPIA" totalframe="1500" In="0" Out="1500" />-->
+<!--      		<FilterNode name="BLANK" FilterID="BLANK" totalframe="1500" In="0" Out="1500" />-->
+<!--			<FilterNode name="BLEND_SCREEN" FilterID="BLEND_SCREEN" totalframe="1500" In="0" Out="1500" attachType="IMAGE">-->
+<!--				<attachment file="vintage-480-480.png" />-->
+<!--			</FilterNode>-->
+<!--		</MediaNode>-->
+<!--	</VideoTrack>-->
+<!--	<AudioTrack>-->
+<!--		<AudioNode name="TestAudio1" id=""  AudioType="1" totalframe="1500" In="0" Out="1500" >-->
+<!--			<attachment file="vintage.mp4" />-->
+<!--		</AudioNode>-->
+<!--	</AudioTrack>-->
+<!--	-->
+<!--</RootNode>-->
+
+<!--input ==>input source image count-->
+<Theme>
+    <filter filterID="BLEND_SCREEN" input="2">
+        <attachment overlayImage="vintage-480-480.png" audioName="vintage.mp4"></attachment>
+    </filter>
+    <Subfilter filterID="SEPIA"/>
+</Theme>

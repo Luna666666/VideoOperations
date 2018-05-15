@@ -1,0 +1,10 @@
+/* 
+  Localization.strings
+  EasyVideoRecorderDemo
+
+  Created by ChenShun on 16/4/5.
+  Copyright © 2016年 EasyDarwin. All rights reserved.
+*/
+"video_capture_generating" = "处理中";
+"video_edit_export_detail" = "转换时间根据您视频时长决定";
+"video_edit_export_title" = "正在导出视频(%d%%)\n";
